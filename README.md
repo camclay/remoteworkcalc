@@ -7,6 +7,7 @@
 * Salary (Annual)
 * Hours Commuted Daily Rountrip (min 1 hr, pre WFH)
 * Monthly Commute Cost (pre WFH)
+* Monthly Child Care Cost (pre WFH)
 
 **Assumptions**
 * You use 100% of average yearly pto(12 days), sick(9 days) and holiday (8 days) time.
