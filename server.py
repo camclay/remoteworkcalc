@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify, url_for, flash, redirect
-import datetime
 import os
+from datetime import datetime, timedelta
 
 app = Flask(__name__, static_folder='public', template_folder='views')
 
@@ -19,9 +19,14 @@ def create():
     monthlyCommuteCost = float(monthlyCommuteCost) if monthlyCommuteCost else 100
     monthlyChildCareCost = request.form['monChildCareCost']
     monthlyChildCareCost = int(monthlyChildCareCost) if monthlyChildCareCost else 0
+    customStartDate = request.form['startDate']
+    customStartDate = datetime.strptime(customStartDate, '%Y-%m-%d') if customStartDate else 0
   #return render_template('index.html')
-    startDate = datetime.datetime(2020, 3, 17)
-    endDate = datetime.datetime.today()
+    if customStartDate == 0:
+      startDate = datetime(2020, 3, 17)
+    else:
+      startDate = customStartDate
+    endDate = datetime.today()
     deltaDate = endDate - startDate
     deltaCount = deltaDate.days
     avgDaysPTO = 12
@@ -52,7 +57,7 @@ def create():
     "Working remote is equal to a <b>${}</b> annual raise.<br>" \
     "You'd need to be compensated <b>${}</b> to return to the office." \
     .format(totalBusDays,timeSaved,totalCommuteCost,totalChildCareCost,annualRaise,totalSavings) 
-    return respStr
+    return respStr 
   #return render_template('create.html')
 
 @app.route("/")
@@ -62,3 +67,5 @@ def index():
 
 if __name__ == "__main__":
   app.run()
+
+  ###
