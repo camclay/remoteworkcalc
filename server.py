@@ -58,7 +58,6 @@ def create():
     "If you were paid to commute, your time was worth <b>${}</b>.<br>" \
     "This saved you approximately <b>${}</b> on your child care expenses.<br>" \
     "Working remote is equal to a <b>${}</b> annual raise.<br>" \
-
     "Working remotely is worth <b>${}</b> for you." \
     .format(totalBusDays,timeSaved,totalCommuteCost,hourlyWorth,totalChildCareCost,annualRaise,totalSavings) 
     return respStr 
