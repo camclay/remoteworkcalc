@@ -43,20 +43,24 @@ def create():
     hourly = round((salary/52)/40)
     #commuteRoundTripHrs = 1
     timeSaved = int(commuteRoundTripHrs * totalBusDays)
+    hourlyWorth = (hourly * timeSaved)
+    
     #monthlyCommuteCost = 165
     yearlyCommuteCost = monthlyCommuteCost * 12
     totalCommuteCost = round((yearlyCommuteCost * yearsCount) + (yearlyCommuteCost * yearModPercent))
     yearlyChildCareCost = monthlyChildCareCost * 12
     totalChildCareCost = round((yearlyChildCareCost * yearsCount) + (yearlyChildCareCost * yearModPercent))
-    totalSavings = round(totalCommuteCost + totalChildCareCost + (hourly * timeSaved))
+    totalSavings = round(totalCommuteCost + totalChildCareCost + hourlyWorth)
     annualRaise = int(yearlyCommuteCost + yearlyChildCareCost + (hourly * (commuteRoundTripHrs * avgWorkingDays)))
     respStr = "You have not commuted for approximately <b>{}</b> business days.<br>" \
-    "This saved you atleast <b>{}</b> hours lost to commuting.<br>" \
-    "This saved you approximately <b>${}</b> on your commuting expenses.<br>" \
+    "You saved you atleast <b>{}</b> hours lost to commuting.<br>" \
+    "You saved you approximately <b>${}</b> on your commuting expenses.<br>" \
+    "If you were paid to commute, your time was worth <b>${}</b>.<br>" \
     "This saved you approximately <b>${}</b> on your child care expenses.<br>" \
     "Working remote is equal to a <b>${}</b> annual raise.<br>" \
-    "You'd need to be compensated <b>${}</b> to return to the office." \
-    .format(totalBusDays,timeSaved,totalCommuteCost,totalChildCareCost,annualRaise,totalSavings) 
+
+    "Working remotely is worth <b>${}</b> for you." \
+    .format(totalBusDays,timeSaved,totalCommuteCost,hourlyWorth,totalChildCareCost,annualRaise,totalSavings) 
     return respStr 
   #return render_template('create.html')
 
